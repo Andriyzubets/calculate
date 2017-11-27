@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/script.js"></script>
+</head>
+<body>
+<form action="#" method="post">
+	<select id="autos" name="brand" onchange="showModels(this.value)">
+		<option value="111">Choose...</option>
+		<option value="ZAZ">ZAZ</option> 
+		<option value="KIA">KIA</option> 
+	</select>
+
+	<select id="models" name="model" onchange="showTransmission(this.value)">
+
+	</select>
+	<select name="transmission" id="transmission" >
+
+	</select>
+	<select id="service-option" name="items" multiple="">
+			<option value="0">ТО-1</option>	<option value="1">ТО-2</option>	<option value="2">ТО-3</option>	<option value="3">ТО-4</option>	<option value="4">ТО-5</option>	<option value="5">Мойка комплексная</option>	<option value="6">Комплексная диагностика</option>	<option value="7">Диагностика ходовой</option>	<option value="8">Диагностика электрооборудования</option>	<option value="9">Проверка и заправка системы кондиционирования</option>	<option value="10">Масло  и фильтр масляный  замена</option>	<option value="11">Фильтр воздушний замена</option>	<option value="12">Подготовка и окраска одной детали</option>	<option value="13">Развал схождение</option>	<option value="14">Шиномонтаж</option>	<option value="15">Гбо - техобслуживание</option>	<option value="16">Ремень ГРМ - замена</option>	<option value="17">Ремонт рулевой рейки</option>	<option value="18">Замена подшипника ступицы</option>	<option value="19">Чистка форсунок</option>	<option value="20">Кульова опора - заміна</option>	<option value="21">Антикорозионная обработка - полная</option>	<option value="22">Услуги евакуатора</option>
+	</select>
+	 <!-- <input class="button" type="submit" value="ОТПРАВИТЬ" id="submit">
+     <span id="output">0</span> -->
+
+
+<button onclick="
+  var el = document.getElementById('service-option')[0];
+  alert(getSelectValues(el));" type="submit" id="bla">Show</button>
+</form>
+
+	<script language="javascript" type="text/javascript">
+              
+                var ZAZ_Sens_1300i_MT = [0, 0, 0, 0, 0, 149, 150, 100, 150, 0, 99, 49, 1300, 149, 170, 229, 400, 400, 250, 0, 250, 1700, 150];
+                var ZAZ_Sens_1400i_MT = [0, 0, 0, 0, 0, 149, 150, 100, 150, 0, 99, 49, 1300, 149, 170, 229, 400, 400, 250, 0, 250, 1700, 150];
+                var ZAZ_Lanos_1500i_MT = [0, 0, 0, 0, 0, 149, 150, 100, 150, 0, 99, 49, 1300, 149, 170, 229, 700, 700, 250, 700, 250, 1700, 150];
+                var ZAZ_Lanos_1600i_MT = [0, 0, 0, 0, 0, 149, 150, 100, 150, 349, 99, 49, 1600, 149, 170, 229, 700, 700, 250, 700, 250, 1700, 150];
+                var KIA_Spotrage_1700d_MT = [1400, 2200, 1700, 5400, 3800, 149, 150, 100, 150, 349, 129, 49, 2200, 149, 170, 229, 1110, 1110, 700, 700, 700, 2800, 150];
+                var KIA_Spotrage_2000d_AT = [1400, 2200, 1700, 5400, 3800, 149, 150, 100, 150, 349, 129, 49, 2200, 149, 170, 229, 1110, 1110, 700, 1100, 700, 2800, 150];
+                var KIA_Spotrage_1600i_MT = [1400, 2200, 1700, 5400, 3800, 149, 150, 100, 150, 349, 129, 49, 2200, 149, 170, 229, 1110, 1110, 700, 1100, 700, 2800, 150];
+                var KIA_Spotrage_1600i_AT = [1400, 2200, 1700, 5400, 3800, 149, 150, 100, 150, 349, 129, 49, 2200, 149, 170, 229, 1110, 1110, 700, 1100, 700, 2800, 150];
+                var KIA_Spotrage_2000i_AT = [1400, 2200, 1700, 5400, 3800, 149, 150, 100, 150, 349, 129, 49, 2200, 149, 170, 229, 1110, 1110, 700, 1100, 700, 2800, 150];
+
+                var ZAZ = Array('Choose...','Sens_1300i','Sens_1400i','Lanos_1500i','Lanos_1600i');
+                var KIA = Array('Choose...','Sportage_1700d','Sportage_2000d','Sportage_1600i','Sportage_2000i','Optima');
+                var aTm = Array('AT','MT');
+                var tM = Array('MT');
+				var Sens_1300i = tM;
+				var Sens_1400i = tM;
+				var Lanos_1500i = tM;
+				var Lanos_1600i = tM;
+				var Sportage_1700d = aTm;
+				var Sportage_2000d = aTm;
+				var Sportage_1600i = aTm;
+				var Sportage_2000i = aTm;        
+
+                function showModels(v){
+                	var mas = eval(v);
+                	var el = document.getElementById('models');
+                	while(el.childNodes.length>0){
+                		el.removeChild(el.childNodes[el.childNodes.length-1]);
+                	}
+                	for(var i=0;i<mas.length;i++){
+                		var opt = document.createElement("option");
+                		opt.innerHTML=mas[i];
+                		el.appendChild(opt);
+                	}
+                }
+                function showTransmission(v){
+                	var mas = eval(v);
+                	var el = document.getElementById('transmission');
+                	while(el.childNodes.length>0){
+                		el.removeChild(el.childNodes[el.childNodes.length-1]);
+                	}
+                	for(var i=0;i<mas.length;i++){
+                		var opt = document.createElement("option");
+                		opt.innerHTML=mas[i];
+                		el.appendChild(opt);
+                	}
+                }
+             // var mainid = document.getElementById("#autos").value;
+             // document.write(mainid);
+             var superId =0;
+             var superOption = 0;
+             function someFunc(){
+                superId = (document.getElementById("autos").value+"_"+document.getElementById("models").value+"_"+document.getElementById("transmission").value);
+                superOption = (document.getElementById("service-option").value);
+                alert(superId);
+                if (superId=='ZAZ_Sens_1300i_MT') {
+                    alert(ZAZ_Sens_1300i_MT[7])
+                }
+                else alert("None")
+                }
+
+                document.getElementById("bla").onclick = someFunc;
+                
+                function getSelectValues(select) {
+                  var result = [];
+                  var options = select && select.options;
+                  var opt;
+
+                  //     for (var i=0, iLen=options.length; i<iLen; i++) {
+                  //       opt = options[i];
+
+                  //       if (opt.selected) {
+                  //         result.push(opt.value || opt.text);
+                  //     }
+                  // }
+                  // return result;
+                }
+
+                $("#bla").click(function(){
+    var selectedValues = [];    
+    $("#service-option :selected").each(function(){
+        selectedValues.push($(this).val()); 
+    });
+    alert(selectedValues);
+    return false;
+});
+                // var select = document.querySelector("select");
+                // var output = document.querySelector("#output");
+                // select.addEventListener("change", function() {
+                // var number = 0;
+                // for (var i = 0; i < select.options.length; i++) {
+                // var option = select.options[i];
+                // if (option.selected)
+                // number += option.value;
+                // }
+                // output.textContent = number;
+                // });
+            </script>
+        </body>
+        </html>
