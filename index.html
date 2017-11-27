@@ -24,8 +24,7 @@
 	<select id="service-option" name="items" multiple="">
 			<option value="0">ТО-1</option>	<option value="1">ТО-2</option>	<option value="2">ТО-3</option>	<option value="3">ТО-4</option>	<option value="4">ТО-5</option>	<option value="5">Мойка комплексная</option>	<option value="6">Комплексная диагностика</option>	<option value="7">Диагностика ходовой</option>	<option value="8">Диагностика электрооборудования</option>	<option value="9">Проверка и заправка системы кондиционирования</option>	<option value="10">Масло  и фильтр масляный  замена</option>	<option value="11">Фильтр воздушний замена</option>	<option value="12">Подготовка и окраска одной детали</option>	<option value="13">Развал схождение</option>	<option value="14">Шиномонтаж</option>	<option value="15">Гбо - техобслуживание</option>	<option value="16">Ремень ГРМ - замена</option>	<option value="17">Ремонт рулевой рейки</option>	<option value="18">Замена подшипника ступицы</option>	<option value="19">Чистка форсунок</option>	<option value="20">Кульова опора - заміна</option>	<option value="21">Антикорозионная обработка - полная</option>	<option value="22">Услуги евакуатора</option>
 	</select>
-	 <!-- <input class="button" type="submit" value="ОТПРАВИТЬ" id="submit">
-     <span id="output">0</span> -->
+     <span id="output">0</span>
 
 
 <button onclick="
@@ -57,7 +56,7 @@
 				var Sportage_2000d = aTm;
 				var Sportage_1600i = aTm;
 				var Sportage_2000i = aTm;        
-
+                // зависимые списки
                 function showModels(v){
                 	var mas = eval(v);
                 	var el = document.getElementById('models');
@@ -82,56 +81,39 @@
                 		el.appendChild(opt);
                 	}
                 }
-             // var mainid = document.getElementById("#autos").value;
-             // document.write(mainid);
-             var superId =0;
-             var superOption = 0;
-             function someFunc(){
+                // выбор данных из мультипла
+                // var opt;
+                // var result = [];
+                // function getSelectValues(select) {
+                  
+                //   var options = select && select.options;
+                  
+                // }
+                var selectedValues = [];
+                $("#bla").click(function(){
+                    // var selectedValues = [];    
+                    $("#service-option :selected").each(function(){
+                        selectedValues.push($(this).val()); 
+                    });
+                    alert(selectedValues);
+                    // return false;
+                });
+                var _1 = selectedValues[0];
+                var superId;
+                // вызов слепка ID
+                function getId(){
                 superId = (document.getElementById("autos").value+"_"+document.getElementById("models").value+"_"+document.getElementById("transmission").value);
-                superOption = (document.getElementById("service-option").value);
                 alert(superId);
                 if (superId=='ZAZ_Sens_1300i_MT') {
-                    alert(ZAZ_Sens_1300i_MT[7])
+                    alert(ZAZ_Sens_1300i_MT[_4]);
+                   
                 }
                 else alert("None")
                 }
-
-                document.getElementById("bla").onclick = someFunc;
                 
-                function getSelectValues(select) {
-                  var result = [];
-                  var options = select && select.options;
-                  var opt;
-
-                  //     for (var i=0, iLen=options.length; i<iLen; i++) {
-                  //       opt = options[i];
-
-                  //       if (opt.selected) {
-                  //         result.push(opt.value || opt.text);
-                  //     }
-                  // }
-                  // return result;
-                }
-
-                $("#bla").click(function(){
-    var selectedValues = [];    
-    $("#service-option :selected").each(function(){
-        selectedValues.push($(this).val()); 
-    });
-    alert(selectedValues);
-    return false;
-});
-                // var select = document.querySelector("select");
-                // var output = document.querySelector("#output");
-                // select.addEventListener("change", function() {
-                // var number = 0;
-                // for (var i = 0; i < select.options.length; i++) {
-                // var option = select.options[i];
-                // if (option.selected)
-                // number += option.value;
-                // }
-                // output.textContent = number;
-                // });
+                // alert(ZAZ_Sens_1300i_MT[21]);
+                document.getElementById("bla").onclick = getId;
+                
             </script>
         </body>
         </html>
